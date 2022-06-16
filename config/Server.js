@@ -31,6 +31,7 @@ class Server {
 
   routes() {
     this.app.use(this.ep.users, require("../routers/user"));
+    this.app.use(this.ep.auth, require("../routers/auth"));
   }
 
   listen() {
