@@ -32,6 +32,7 @@ class Server {
   routes() {
     this.app.use(this.ep.users, require("../routers/user"));
     this.app.use(this.ep.auth, require("../routers/auth"));
+    this.app.use(this.ep.tasks, require("../routers/task"));
   }
 
   listen() {

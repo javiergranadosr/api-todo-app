@@ -16,19 +16,20 @@ const login = async (req, res = response) => {
 
     if (!user) {
       return res.status(400).json({
+        code: 400,
         message: "Usuario / Contraseña  incorrectos.",
       });
     }
 
     if (!user.status) {
-      return res.status(400).json({ message: "Usuario dado de baja." });
+      return res.status(400).json({ code: 400, message: "Usuario dado de baja." });
     }
 
     const validatePassword = bcryptjs.compareSync(password, user.password);
     if (!validatePassword) {
       return res
         .status(400)
-        .json({ message: "Usuario / Contraseña  incorrectos." });
+        .json({code: 400, message: "Usuario / Contraseña  incorrectos." });
     }
 
     const token = await generateJwt(user.id);

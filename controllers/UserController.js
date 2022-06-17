@@ -46,6 +46,7 @@ const update = async (req, res = response) => {
       const user = await User.findOne({ email });
       if (user) {
         return res.status(400).json({
+          code:400,
           message: `El usuario con el correo ${email} ya se encuentra registrado. `,
         });
       }
@@ -55,6 +56,7 @@ const update = async (req, res = response) => {
     if (password) {
       if (password.length < 6) {
         return res.status(400).json({
+          code:400,
           message:
             "La contraseña es obligatoria y debe tener un mínimo de 6 caracteres.",
         });
