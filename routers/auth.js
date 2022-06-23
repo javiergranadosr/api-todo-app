@@ -15,6 +15,6 @@ router.post(
   login
 );
 
-router.post("/validateToken", validateToken);
+router.get("/validateToken", validateToken);
 
 module.exports = router;
