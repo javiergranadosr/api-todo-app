@@ -53,8 +53,8 @@ const getTasks = async (req, res = response) => {
  */
 const create = async (req, res = response) => {
   try {
-    const { name, userId } = req.body;
-    const task = new Task({ name, userId });
+    const { name, userId, complete } = req.body;
+    const task = new Task({ name, userId, complete });
 
     await task.save();
 

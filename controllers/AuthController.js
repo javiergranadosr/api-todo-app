@@ -77,7 +77,7 @@ const validateToken =  async (req, res = response) => {
     }
 
    
-    res.json({ code: 200, token, ok: true })
+    res.json({ code: 200, token, ok: true, user })
 
   } catch (error) {
     console.log(error);
