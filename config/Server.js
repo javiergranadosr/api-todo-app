@@ -5,7 +5,7 @@ const { connection } = require("./Connection");
 class Server {
   constructor() {
     this.app = express();
-    this.port = 8081;
+    this.port =  process.env.PORT;
 
     this.ep = {
       users: "/api/v1/users",
