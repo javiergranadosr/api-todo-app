@@ -6,6 +6,7 @@ const {
   create,
   deleteTask,
   clearComplete,
+  changeComplete,
 } = require("../controllers/TaskController");
 const { validateJwt } = require("../middlewares/validateJWT");
 const { existUserById, existTaskById } = require("../helpers/customValidation");
@@ -54,6 +55,18 @@ router.delete(
     validate,
   ],
   deleteTask
+);
+
+router.post(
+  "/changeComplete",
+  [
+    validateJwt,
+    check("id", "No es un id valido de la tarea").isMongoId(),
+    check("id").custom(existTaskById),
+    check("complete", "El estatus no debe estar vacio").not().isEmpty(),
+    validate
+  ],
+  changeComplete
 );
 
 module.exports = router;

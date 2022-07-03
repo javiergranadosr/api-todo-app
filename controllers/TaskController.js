@@ -127,9 +127,29 @@ const clearComplete = async (req, res = response) => {
   }
 };
 
+/**
+ * Actializa el estado de la tarea, en acompletada o activa
+ * @param {*} req 
+ * @param {*} res 
+ */
+const changeComplete =  async (req, res = response) => {
+  try {
+    const { id, complete } = req.body;
+    const task = await Task.findByIdAndUpdate(id, {complete}, { new: true });
+    res.json({ code: 200, message:`La tarea ${task.name} ha sido actualizada con éxito.`, });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      message:
+        "Hubo un error al actualizar la tarea. Favor de contactar a un administrador.",
+    });
+  }
+};
+
 module.exports = {
   getTasks,
   create,
   deleteTask,
   clearComplete,
+  changeComplete,
 };
